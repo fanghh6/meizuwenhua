@@ -61,6 +61,7 @@
 								w.close();w=null;
 							}
 							plus.payment.request(pays[id],order,function(result){
+								// 安卓可以获取到是否支付成功，且安卓相应慢，不再这里关闭等待框的话，可以多次提交
 								if(mui.os.android){
 									w.close();w=null;
 								}
