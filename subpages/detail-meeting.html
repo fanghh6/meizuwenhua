@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>美族文化</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<style>
+			html,
+			body,
+			.mui-content {
+				background-color: #fff;
+			}
+			.title{
+				margin: 10px 5px 5px;
+				color: #6d6d72;
+				font-size: 18px;
+			}
+			p {
+				padding: 5px 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">活动详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<h4>
+					主题
+				</h4>
+				<p>
+					3/11日 全季活动：9:30-16:45
+				</p>
+				<h4>
+					详细安排
+				</h4>
+				<p>
+					09:30-10:00 ageLOC me—薛峰
+					<br />
+					10:00-10:50 分享（成都：朱莉安，魏巍，杨梅）
+					<br />
+					10:50-11:00 休息
+					<br />
+					11:00-12:00 个人心路历程分享 徐云河
+					<br />
+					<br />
+					12:00-13:00 午餐
+					<br />
+					<br />
+					13:00-14:00 人生访谈—黄薇 访谈嘉宾：刘媛媛，刘聪，邱子兰
+					<br />
+					14:00-15:00 成创破冲添—王英
+					<br />
+					15:00-15:15 休息
+					<br />
+					15:15-16:45 成功循环线-方芳
+					<br />
+					16:45-17:15 会后会总结
+					<br />
+					<br />
+					会务：
+					<br />
+					主持：徐磊
+					<br />
+					音控：王帅
+					<br />
+					灯光：袁飞虹，
+					<br />
+					会务：朱丹峰，袁飞虹，赵珏
+					<br />
+					总负责：张任重
+					<br />
+
+				</p>
+			</div>
+			<div id="div_enroll" class="mui-card">
+				<form class="mui-input-group">
+					<ul class="mui-table-view mui-grid-view">
+				        <li class="mui-table-view-cell mui-media mui-col-xs-12">
+							<h4 id="meeting_price" class="mui-pull-left">
+								活动价：200元/人
+							</h4>
+				        </li>
+				        <li class="mui-table-view-cell mui-media mui-col-xs-12">
+							<h5 id="meeting_price_memo" class="mui-pull-left">
+								收取的费用仅作为活动建设费使用
+							</h5>
+				        </li>
+					</ul>
+					<hr style="" width="100%" color=#DDDDDD SIZE=1>
+					<div class="mui-input-row">
+						<label>姓名</label>
+						<input type="text" placeholder="">
+					</div>
+					<div class="mui-input-row">
+						<label>联系电话</label>
+						<input type="number" placeholder="">
+					</div>
+					<div style="margin-left: 15px;margin-right: 1px;margin-top: 1px;">
+						<button id='input_enroll_person_count' class="mui-btn mui-btn-block" type='button'>
+							选择人数
+						</button>
+						<div id='div_enroll_person_count_data' class="ui-alert"></div>
+					</div>
+				</form>
+				<textarea id="textarea" rows="5" placeholder="备注"></textarea>
+		        <button id="btn_pay" type="button" class="mui-btn mui-btn-primary mui-btn-block">
+		        		立即报名
+		        </button>
+			</div>
+			<div id="div_enrolled" class="mui-card"
+				style="text-align: center;margin-top: 20px;margin-bottom: 20px;background-color: #4EEE94;">
+		        <h3 style="margin-top: 15px;margin-bottom: 15px;color:#FFFFFF">
+		        		已报名
+		        </h3>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true
+			});
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				var detailId = self.detailId;
+			});
+			mui.ready(function() {
+				var PersonCountPicker = new mui.PopPicker();
+				var number = [];
+				for(var i = 0; i < 10; i++) {
+					number.push(i+1);
+				}
+				PersonCountPicker.setData(number);
+			
+				var input_enroll_person_count = document.getElementById('input_enroll_person_count');
+				var div_enroll_person_count_data = document.getElementById('div_enroll_person_count_data');
+				input_enroll_person_count.addEventListener('tap', function(event) {
+					PersonCountPicker.show(function(items) {
+						if(items[0] > 0 && items[0] <= 10){
+							input_enroll_person_count.innerText = items[0] + " 人";
+						}
+						else{
+							return false;
+						}
+					});
+				}, false);
+				
+				document.getElementById('btn_pay').addEventListener('tap', function(event) {
+					var orderId = "P001";
+					mui.openWindow({
+						url:'common-payment.html',
+						id:'common-payment.html',
+						extras:{      
+							orderId: orderId
+						}
+					});
+			});
+			});
+		</script>
+	</body>
+</html>

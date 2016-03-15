@@ -1,0 +1,77 @@
+{
+	"main.html": {
+		"resources": [
+			"js/mui.min.js",
+			"subpages/tab-webview-subpage-index.html",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"subpages/tab-webview-subpage-contact.html",
+			"subpages/tab-webview-subpage-index.html",
+			"subpages/tab-webview-subpage-chat.html",
+			"subpages/tab-webview-subpage-setting.html",
+			"subpages/tab-webview-subpage-service.html"
+		]
+	},
+	"subpages/tab-webview-subpage-index.html": {
+		"resources": [
+			"images/cbd.jpg",
+			"images/muwu.jpg",
+			"images/yuantiao.jpg",
+			"css/app.css",
+			"images/shuijiao.jpg"
+		]
+	},
+	"subpages/tab-webview-subpage-chat.html": {
+		"resources": [
+			"images/60x60.gif"
+		]
+	},
+	"subpages/detail-meeting.html": {
+		"resources": [
+			"js/mui.picker.js",
+			"js/mui.poppicker.js",
+			"css/mui.poppicker.css",
+			"css/mui.picker.css",
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"subpages/common-payment.html"
+		]
+	},
+	"subpages/tab-webview-subpage-service.html": {
+		"refer": [
+			"subpages/detail-meeting.html",
+			"subpages/list-meeting.html"
+		]
+	},
+	"subpages/common-payment.html": {
+		"resources": [
+			"images/wxpay.png",
+			"images/alipay.png",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"subpages/tab-webview-subpage-contact.html": {
+		"resources": [
+			"images/60x60.gif"
+		]
+	},
+	"subpages/list-meeting.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/app.css"
+		],
+		"refer": [
+			"subpages/detail-meeting.html"
+		]
+	}
+}

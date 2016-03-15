@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>美族文化</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" href="../css/app.css" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.title{
+				margin: 10px 5px 5px;
+				color: #6d6d72;
+				font-size: 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">所有活动</h1>
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed e-list-meeting">
+			        <li class="mui-table-view-cell e-detail-meeting" detailId="1">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-10">
+			                    <h4 class="mui-ellipsis">
+			                    		香港年会开始报名了
+			                    </h4>
+			                    <h5>
+			                    		主讲：大佬们
+			                    </h5>
+			                    <p class="mui-h6 mui-ellipsis">
+			                    		1活动详情活动详情活动详情活动详情活动详情活动详情活动详情
+			                    </p>
+			                </div>
+			                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+			                    <span class="mui-h5">3-28</span>
+			                </div>
+			            </div>
+			        </li>
+			        <li class="mui-table-view-cell e-detail-meeting" detailId="2">
+			            <div class="mui-table">
+			                <div class="mui-table-cell mui-col-xs-10">
+			                    <h4 class="mui-ellipsis">
+			                    		活动2
+			                    </h4>
+			                    <h5>
+			                    		主讲：主讲2
+			                    </h5>
+			                    <p class="mui-h6 mui-ellipsis">
+			                    		2活动详情活动详情活动详情活动详情活动详情活动详情活动详情
+			                    </p>
+			                </div>
+			                <div class="mui-table-cell mui-col-xs-2 mui-text-right">
+			                    <span class="mui-h5">4-6</span>
+			                </div>
+			            </div>
+			        </li>
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true,
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			mui.plusReady(function() {
+				
+			});
+			mui(".e-list-meeting").on('tap','.e-detail-meeting', function() {
+				var detailId = this.getAttribute("detailId");
+				mui.openWindow({
+					url:'detail-meeting.html',
+					id:'detail-meeting.html',
+					extras:{      
+						detailId: detailId
+					}
+				});
+			});
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 20; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+						table.appendChild(li);
+					}
+				}, 1000);
+			}
+		</script>
+	</body>
+</html>

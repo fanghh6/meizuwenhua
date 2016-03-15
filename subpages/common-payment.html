@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<title>美族文化</title>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+			var pays={};
+			mui.plusReady(function() {
+				// 获取支付通道
+				plus.payment.getChannels(function(channels){
+					for(var i in channels){
+						var channel=channels[i];
+						pays[channel.id]=channel;
+					}
+				},function(e){
+					alert("获取支付通道失败："+e.message);
+				});
+			});
+
+			var w=null;
+			var PAYSERVER='http://demo.dcloud.net.cn/payment/?payid=';
+			// 支付
+			function pay(){
+				if(w){return;}//检查是否请求订单中
+				var url=PAYSERVER;
+				
+				//支付方式
+				var id=null; 
+				var payway=document.getElementsByClassName("mui-selected");
+				id = payway[0].id;
+				if(id=='alipay'||id=='wxpay'){
+					url+=id;
+				}else{
+					plus.nativeUI.alert("不支持此支付通道！",null,"捐赠");
+					return;
+				}
+				var appid=plus.runtime.appid;
+				if(navigator.userAgent.indexOf('StreamApp')>=0){
+					appid='Stream';
+				}
+				url+='&appid='+appid+'&total=';
+				
+				w=plus.nativeUI.showWaiting();
+				// 请求支付订单
+				var amount = 0.01;
+				var xhr=new XMLHttpRequest();
+				xhr.onreadystatechange=function(){
+					switch(xhr.readyState){
+						case 4:
+						if(xhr.status==200){
+							var order=xhr.responseText;
+							if(mui.os.ios)
+							{
+								w.close();w=null;
+							}
+							plus.payment.request(pays[id],order,function(result){
+								if(mui.os.android){
+									w.close();w=null;
+								}
+								plus.nativeUI.alert("支付成功：感谢你的支持，我们会继续努力完善产品。",function(){
+									//history.back();
+								},"捐赠");
+							},function(e){
+								if(mui.os.android){
+									w.close();w=null;
+								}
+								plus.nativeUI.alert("更多错误信息请参考支付(Payment)规范文档：http://www.html5plus.org/#specification#/specification/Payment.html",null,"支付失败："+e.code);
+							});
+						}else{
+							plus.nativeUI.alert("获取订单信息失败！",null,"捐赠");
+						}
+						break;
+						default:
+						break;
+					}
+				}
+				xhr.open('GET',url+amount);
+				xhr.send();
+			}
+		</script>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style type="text/css">
+			p {
+				padding: 0 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">在线支付</h1>
+		</header>
+		<div class="mui-content">
+			<div style="margin:10px 0px 10px 0px;background-color: #FFFFFF">
+				<h4 style="padding:5px 10px 5px 10px">
+					支付明细
+				</h4>
+				<p style="margin:0px 10px">
+					商品：3/11 全季活动：9:30-16:45
+					<br />
+					单价：200/人
+					<br />
+					人数：2人
+				</p>
+				<hr style="margin:5px 10px" />
+				<h4 style="padding:5px 10px 10px 10px">
+					总计：400元
+				</h4>
+			</div>
+			<div>
+				<ul class="mui-table-view mui-table-view-radio">
+					<li id="wxpay" class="mui-table-view-cell mui-media mui-selected">
+						<a class="mui-navigate-right">
+							<img class="mui-media-object mui-pull-left" src="../images/wxpay.png">
+							<div class="mui-media-body">
+								微信支付
+								<p class='mui-ellipsis'>微信5.0及以上版本可用</p>
+							</div>
+						</a>
+					</li>
+					<li id="alipay" class="mui-table-view-cell mui-media">
+						<a class="mui-navigate-right">
+							<img class="mui-media-object mui-pull-left" src="../images/alipay.png">
+							<div class="mui-media-body">
+								支付宝支付
+								<p class='mui-ellipsis'>推荐有支付宝账号的用户使用</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div style="margin: 15px 20px 15px 20px;color:#FFFFFF">
+		        <button id="btn_pay" type="button" class="mui-btn mui-btn-primary mui-btn-block" onclick="pay()" >
+		        		确认支付  ￥400
+		        </button>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>美族文化</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
+		<style>
+			html,body {
+				background-color: #efeff4;
+			}
+			.title{
+				margin: 10px 5px 5px;
+				color: #6d6d72;
+				font-size: 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div id="div_top_slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="../images/yuantiao.jpg">
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../images/shuijiao.jpg">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../images/muwu.jpg">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../images/cbd.jpg">
+						</a>
+					</div>
+					<!-- 第四张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../images/yuantiao.jpg">
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="../images/shuijiao.jpg">
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+			<p></p>
+			<div class="mui-card">
+				<ul class="mui-table-view mui-grid-view">
+			        <li class="mui-table-view-cell mui-media mui-col-xs-12">
+			            <a href="#">
+				            	<div>
+				            		<h4 class="mui-pull-left">热门活动推荐</h4>
+				            		<h5 style="margin-top: 10px;" class="mui-pull-right">更多 ></h5>
+				            	</div>
+						</a>	
+						<hr style="" width="100%" color=#999 SIZE=1>
+			        </li>
+			        <li class="mui-table-view-cell mui-media mui-col-xs-12">
+			            <a href="#">
+			                <img class="mui-media-object" src="../images/shuijiao.jpg">
+			                <div class="mui-media-body">幸福就是可以一起睡觉劳动节法</div>
+			            </a>
+			        </li>
+			        <li class="mui-table-view-cell mui-media mui-col-xs-12">
+			            <a href="#">
+			                <img class="mui-media-object" src="../images/muwu.jpg">
+			                <div class="mui-media-body">想要一间这样的木屋，静静的喝咖啡</div>
+			            </a>
+			        </li>
+			        <li class="mui-table-view-cell mui-media mui-col-xs-12">
+			            <a href="#"><img class="mui-media-object" src="../images/cbd.jpg">
+			                <div class="mui-media-body">Color of SIP CBD</div>
+			            </a>
+			        </li>
+			        <li class="mui-table-view-cell mui-media mui-col-xs-12">
+			            <a href="#">
+			                <img class="mui-media-object" src="../images/yuantiao.jpg">
+			                <div class="mui-media-body">静静看这世界</div>
+			            </a>
+			        </li>
+		    		</ul>
+			</div>
+			<p></p>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		var slider = mui("#div_top_slider");
+		slider.slider({
+					interval: 3000
+				});
+	</script>
+</html>

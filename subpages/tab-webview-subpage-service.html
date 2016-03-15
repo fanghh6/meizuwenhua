@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>美族文化</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.title{
+				margin: 10px 5px 5px;
+				color: #6d6d72;
+				font-size: 18px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell mui-collapse mui-active">
+					<a class="mui-navigate-right" style="font-weight: 500;">
+						最新活动
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron e-list-meeting">
+						<li class="mui-table-view-cell e-detail-meeting" detailId="1">
+							<a class="mui-navigate-right" >
+								[上海]全季酒店xx分享会
+							</a>
+						</li>
+						<li class="mui-table-view-cell e-detail-meeting" detailId="2">
+							<a class="mui-navigate-right" >
+								[温州]特卖会
+							</a>
+						</li>
+						<li class="mui-table-view-cell e-detail-meeting" detailId="3">
+							<a class="mui-navigate-right" >
+								[昆明]spa仪试用体验会
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a id="link_meeting_more" class="mui-navigate-right">
+								更多…
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" style="font-weight: 500;">
+						重要通知
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								美族文化APP上线啦
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								欢迎2016年第一季度新人加入
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								更多…
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" style="font-weight: 500;">
+						产品介绍
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								ageloc
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								灵芝胶囊
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								茶沛胶囊
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								更多…
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" style="font-weight: 500;">
+						个人分享
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								方芳老师十年如新历程
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								刘晓老师个人分享
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								更多…
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" style="font-weight: 500;">
+						新手入门
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								手把手教你如何创业
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								xx产品使用说明
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								更多…
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: false
+			});
+			mui.plusReady(function() {
+				
+			});
+			document.getElementById('link_meeting_more').addEventListener('tap', function() {
+//				var webview = plus.webview.create("list-meeting.html");
+//				webview.show('slide-in-right', 150);
+				mui.openWindow({
+					url:'list-meeting.html',
+					id:'list-meeting.html',
+					extras:{
+						
+					}
+				});
+			});
+			mui(".e-list-meeting").on('tap','.e-detail-meeting', function() {
+				var detailId = this.getAttribute("detailId");
+				mui.openWindow({
+					url:'detail-meeting.html',
+					id:'detail-meeting.html',
+					extras:{      
+						detailId: detailId
+					}
+				});
+			});
+			
+		</script>
+	</body>
+</html>
