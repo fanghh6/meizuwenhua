@@ -55,6 +55,7 @@
 						case 4:
 						if(xhr.status==200){
 							var order=xhr.responseText;
+							// ios获取不到是否支付成功
 							if(mui.os.ios)
 							{
 								w.close();w=null;
